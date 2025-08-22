@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment - Rural Telemedicine Connector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script>
+    // Set default doctor if passed in URL
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const doctorParam = urlParams.get('doctor');
+      if (doctorParam) {
+        document.getElementById('doctor').value = doctorParam;
+      }
+    };
+
+    async function confirmAppointment(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById("name").value;
+      const city = document.getElementById("city").value;
+      const doctor = document.getElementById("doctor").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+
+      if (!city || !doctor) {
+        alert("⚠ Please select both City and Doctor.");
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/appointments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            patient_name: name,
+            city: city,
+            doctor: doctor,
+            date: date,
+            time: time
+          })
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+          alert(`✅ Appointment confirmed!\n\nPatient: ${name}\nCity: ${city}\nDoctor: ${doctor}\nDate: ${date}\nTime: ${time}`);
+          window.location.href = "{{ url_for('index') }}";
+        } else {
+          alert(`❌ Error: ${data.error}`);
+        }
+      } catch (error) {
+        alert('❌ Network error. Please try again.');
+        console.error('Error:', error);
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <h1>Rural Telemedicine Connector</h1>
+    <ul>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('doctors') }}">Doctors</a></li>
+      <li><a href="{{ url_for('appointment') }}" class="active">Book Appointment</a></li>
+      <li><a href="{{ url_for('consult') }}">Consult Online</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <h2>Book Your Appointment</h2>
+  </header>
+
+  <section class="form-section">
+    <form action="https://formspree.io/f/mdkdqgaw" method="POST" onsubmit="saveAppointment(event)">
+      <input type="hidden" name="_redirect" value="https://yourdomain.com/index.html">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="patient_name"autocomplete="on" required>
+
+      <label for="city">Select City:</label>
+      <select id="city" name="city" required>
+        <option value="" disabled selected>Select City</option>
+        <option value="Nagpur">Nagpur</option>
+        <option value="Yavatmal">Yavatmal</option>
+        <option value="Akola">Akola</option>
+      </select>
+
+      <label for="doctor">Select Doctor:</label>
+      <input type="text" id="doctor" name="doctor" list="doctors-list" required placeholder="Select or type doctor name">
+      <datalist id="doctors-list">
+        <option value="Dr. Anjali Deshmukh (General Physician)">
+        <option value="Dr. Rajesh Patil (Cardiologist)">
+        <option value="Dr. Kiran Agrawal (Orthopedic Surgeon)">
+        <option value="Dr. Meera Joshi (ENT Specialist)">
+        <option value="Dr. Sneha Kulkarni (Pediatrician)">
+        <option value="Dr. Amit Joshi (Dermatologist)">
+        <option value="Dr. Nikhil More (Neurologist)">
+        <option value="Dr. Kavita Rathi (Gynecologist)">
+        <option value="Dr. Priya Shinde (Gynecologist)">
+        <option value="Dr. Suresh Bhoyar (General Surgeon)">
+        <option value="Dr. Ramesh Kale (Psychiatrist)">
+        <option value="Dr. Manisha Wagh (Ophthalmologist)">
+      </datalist>
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">Time:</label>
+      <input type="time" id="time" name="time" required>
+
+      <button class="btn" type="submit">Confirm Appointment</button>
+    </form>
+  </section>
+  <script>
+async function saveAppointment(event) {
+  // collect values
+  const name = document.getElementById("name").value;
+  const city = document.getElementById("city").value;
+  const doctor = document.getElementById("doctor").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
+
+  // fire-and-forget fetch to Flask API (don’t prevent default)
+  try {
+    await fetch('/api/appointments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        patient_name: name,
+        city: city,
+        doctor: doctor,
+        date: date,
+        time: time
+      })
+    });
+    // don’t block the form — Formspree will still submit & send email
+    console.log("Saved to backend as well.");
+  } catch (err) {
+    console.error("Could not save to backend:", err);
+  }
+}
+</script>
+</body>
+</html>
