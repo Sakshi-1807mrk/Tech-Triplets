@@ -1,0 +1,441 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+/* Navigation */
+nav {
+  background: #204271;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+nav h1 { 
+  font-size: 1.6rem; 
+  font-weight: 600; 
+}
+
+nav ul { 
+  list-style: none; 
+  display: flex; 
+  gap: 1.5rem; 
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #a8dadc;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #457b9d, #48cae4);
+  color: white;
+}
+
+.hero h2 {
+  font-size: 2.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+/* Buttons */
+.btn, .btn-small {
+  background: #005046;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn:hover, .btn-small:hover {
+  background: #21867a;
+  transform: translateY(-2px);
+}
+
+.btn-small {
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+}
+
+/* Services / Cards */
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background: #f1faff;
+}
+
+.card {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  text-align: center;
+  width: 280px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  color: #1d3557;
+  margin-bottom: 0.8rem;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+}
+
+/* Page Header */
+.page-header {
+  text-align: center;
+  padding: 2.5rem;
+  background: #e6f7ff;
+}
+
+.page-header h2 {
+  font-size: 2rem;
+  color: #1d3557;
+}
+
+/* Doctors Section */
+.doctors {
+  padding: 30px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.doctors h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.doctors p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.city {
+  margin-bottom: 40px;
+}
+
+.city-name {
+  font-size: 22px;
+  margin-bottom: 15px;
+  text-align: left;
+  font-weight: bold;
+  padding-left: 10px;
+  color: #c26717;
+}
+
+.doctor-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.doctor-card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  text-align: left;
+  flex: 1 1 220px;
+  min-width: 220px;
+  max-width: 300px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+}
+
+.doctor-card h4 {
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.doctor-card p {
+  margin-bottom: 12px;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Form Section */
+.form-section {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+  background: #f1faff;
+}
+
+form {
+  background: #ffffff;
+  padding: 2.2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+form label {
+  font-weight: 500;
+  color: #1d3557;
+}
+
+input, select, textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+/* Consult Page */
+.consult {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: #f1faff;
+}
+
+.consult h2 {
+  font-size: 2.2rem;
+  color: #1d3557;
+  margin-bottom: 1rem;
+}
+
+.consult p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Consult Form */
+.consult-form {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: left;
+}
+
+.consult-form label {
+  font-weight: 500;
+  color: #1d3557;
+}
+
+.consult-form input,
+.consult-form select,
+.consult-form textarea {
+  padding: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: none;
+}
+
+.consult-form button {
+  margin-top: 1rem;
+  align-self: center;
+  width: fit-content;
+}
+
+/* Footer */
+footer {
+  background: #1d3557;
+  color: white;
+  text-align: center;
+  padding: 1.2rem;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  nav ul {
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .hero h2 {
+    font-size: 2rem;
+  }
+  
+  .services {
+    padding: 2rem 1rem;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .form-section, .consult {
+    padding: 2rem 1rem;
+  }
+  
+  form, .consult-form {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .doctor-list {
+    justify-content: center;
+  }
+}
+/* Add to your existing styles.css */
+.doctors-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.doctors-intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.doctors-intro h2 {
+  font-size: 2.2rem;
+  color: #1d3557;
+  margin-bottom: 15px;
+}
+
+.doctors-intro p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.city-section {
+  margin-bottom: 50px;
+}
+
+.city-heading {
+  font-size: 1.8rem;
+  color: #c26717;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.doctor-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.doctor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.doctor-card h3 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.doctor-card .specialty {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  flex-grow: 1;
+}
+
+.doctor-card .experience {
+  color: #3498db;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.consult-btn {
+  background: #005046;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+  margin-top: auto;
+}
+
+.consult-btn:hover {
+  background: #21867a;
+}

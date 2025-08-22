@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rural Telemedicine Connector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <h1>Rural Telemedicine Connector</h1>
+    <ul>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('doctors') }}">Doctors</a></li>
+      <li><a href="{{ url_for('appointment') }}">Book Appointment</a></li>
+      <li><a href="{{ url_for('consult') }}">Consult Online</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h2>Healthcare At Your Fingertips</h2>
+    <p>Consult trusted doctors anytime, anywhere with our secure telemedicine platform.</p>
+    <button class="btn" onclick="window.location.href='{{ url_for('appointment') }}'">Book Appointment</button>
+  </header>
+
+  <!-- Services Section -->
+  <section class="services">
+    <div class="card">
+      <h3>Consult Online</h3>
+      <p>Get expert medical advice without leaving your home.</p>
+      <button class="btn-small" onclick="window.location.href='{{ url_for('consult') }}'">Start Consultation</button>
+    </div>
+    <div class="card">
+      <h3>Find Doctors</h3>
+      <p>Browse specialists and choose the right doctor for you.</p>
+      <button class="btn-small" onclick="window.location.href='{{ url_for('doctors') }}'">View Doctors</button>
+    </div>
+    <div class="card">
+      <h3>Book Appointment</h3>
+      <p>Schedule hassle-free consultations at your convenience.</p>
+      <button class="btn-small" onclick="window.location.href='{{ url_for('appointment') }}'">Book Now</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Rural Telemedicine Connector | All Rights Reserved</p>
+  </footer>
+</body>
+</html>

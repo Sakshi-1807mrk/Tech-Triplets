@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consult Online - Rural Telemedicine Connector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    .help-text {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 6px;
+      display: block;
+    }
+    textarea {
+      resize: vertical;
+    }
+  </style>
+  <script>
+    async function handleConsult(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const symptoms = document.getElementById("symptoms").value;
+      const mode = document.getElementById("mode").value;
+
+      try {
+        const response = await fetch('/api/consultations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            patient_name: name,
+            age: age,
+            symptoms: symptoms,
+            mode: mode
+          })
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+          alert("✅ Your online consultation request has been submitted successfully!");
+          window.location.href = "{{ url_for('index') }}";
+        } else {
+          alert(`❌ Error: ${data.error}`);
+        }
+      } catch (error) {
+        alert('❌ Network error. Please try again.');
+        console.error('Error:', error);
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <h1>Rural Telemedicine Connector</h1>
+    <ul>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('doctors') }}">Doctors</a></li>
+      <li><a href="{{ url_for('appointment') }}">Book Appointment</a></li>
+      <li><a href="{{ url_for('consult') }}" class="active">Consult Online</a></li>
+    </ul>
+  </nav>
+
+  <!-- Consultation Section -->
+  <section class="consult">
+    <h2>Start Your Online Consultation</h2>
+    <p>Fill in your details and connect with a doctor instantly.</p>
+
+    <form class="consult-form" onsubmit="handleConsult(event)">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" placeholder="Enter your age" required>
+
+      <label for="symptoms">Describe Your Symptoms:</label>
+      <span class="help-text">Please include details like <b>when the symptoms started, their severity, frequency, and any medications you are taking</b>. This will help the doctor understand your condition better.</span>
+      <textarea id="symptoms" name="symptoms" rows="5" placeholder="Example: I have had a persistent cough for the last 3 days with mild fever. I feel tired in the evenings and I am currently taking paracetamol." required></textarea>
+
+      <label for="mode">Choose Consultation Mode:</label>
+      <select id="mode" name="mode" required>
+        <option value="">-- Select --</option>
+        <option value="chat">Chat</option>
+        <option value="video">Video Call</option>
+        <option value="audio">Audio Call</option>
+      </select>
+
+      <button type="submit" class="btn">Start Consultation</button>
+    </form>
+  </section>
+</body>
+</html>
